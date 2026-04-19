@@ -1,2 +1,2 @@
-# Projeto_UFC-COMPARE
-O projeto UFC compare tem como o objetivo em utilizar top 6 lutadores da historia do UFC e comparar eles mostrando stats dos lutadores e o proprio usuario decidir qual é o seu favorito.
+# Projeto_UFC-FIGTHING
+O projeto UFC FIGHTING tem como o objetivo em utilizar top 6 lutadores da historia do UFC e comparar eles mostrando stats dos lutadores e o proprio usuario decidir qual é o seu favorito.
