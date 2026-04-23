@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.2)), 
+    url("octogono.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo-img {
+  width: 120px;
+  margin-bottom: 25px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+
+.form {
+  background: #F9FAFB; 
+  padding: 40px;
+  border-radius: 10px;
+  width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  text-align: left; 
+  background-color: color-mix(in srgb, white 95%, transparent);
+}
+
+
+.form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #D1D5DB; 
+}
+
+
+.form button {
+  padding: 12px;
+  background: #DAA520; 
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.form button:hover {
+  background: #c8951a; 
+}
+.btn {
+  display: inline-block;
+  padding: 16px 35px;
+  font-size: 18px;
+  background-color: #DAA520;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+}

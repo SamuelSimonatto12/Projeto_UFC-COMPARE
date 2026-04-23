@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.navbar {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 40px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.ufc {
+  color: #DAA520; 
+  font-family: 'Fugaz One', sans-serif;
+}
+
+.fighting {
+  color: white;
+  margin-left: 5px;
+  font-family: 'Fugaz One', sans-serif;
+}
+
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #DAA520;
+}
+
+.banner {
+  height: 100vh;
+
+  background-image: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("cinturao.jpg");
+
+  background-size: cover;   
+  background-position: 65% center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-content {
+  max-width: 500px;background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  text-align: center;
+
+}
+
+.banner h1 {
+  font-size: 65px;
+  margin-bottom: 15px 0 25px;
+  color: #ddd;
+}
+
+.banner p {
+  color: #ccc;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  font-size: 22px;      
+  font-weight: 500;     
+  color: #fff;          
+  margin-bottom: 25px;
+
+}
+
+.btn {
+  display: inline-block;
+  padding: 16px 35px;
+  font-size: 18px;
+  background-color: #DAA520;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #DAA520;
+}
