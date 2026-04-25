@@ -8,7 +8,7 @@ body {
 
   background-image: 
     linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.2)), 
-    url("octogono.jpg");
+    url("img/octogono.jpg");
 
   background-size: cover;
   background-position: center;
@@ -37,8 +37,12 @@ body {
   flex-direction: column;
   gap: 15px;
 
-  text-align: left; 
-  background-color: color-mix(in srgb, white 95%, transparent);
+  text-align: left;
+  opacity: 0.95;
+
+}
+.form h2{
+  text-align: center;
 }
 
 
@@ -46,7 +50,7 @@ body {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #D1D5DB; 
+  background-color: #D1D5DB;
 }
 
 
