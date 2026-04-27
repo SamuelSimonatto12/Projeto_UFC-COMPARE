@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #111;
+  color: white;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background: black;
+}
+
+
+h1 {
+  text-align: center; 
+  font-size: 28px;
+  font-family: 'Fugaz One', sans-serif;
+}
+
+h1 span {
+  color: gold;
+  font-family: 'Fugaz One', sans-serif;
+}
+
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 200px;    
+  object-fit: cover; 
+}
