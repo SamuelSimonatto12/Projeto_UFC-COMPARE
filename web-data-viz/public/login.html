@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/cadastroElogin.css">
+</head>
+
+<body>
+  <div class="container">
+    <form class="form">
+      <h2>Login</h2>
+
+      <input type="text" class="campo" placeholder="Email" id="InEmail">
+      <p style="display: none; color: red;" id="emailIn">Email Inválido</p>
+      <input type="password" class="campo" placeholder="Senha" id="InSenha">
+      <p style="display: none; color: red;" id="senhaIn">Senha Inválida</p>
+      <button type="button" class="botao" onclick="logar()">Entrar</button>
+      <div id="div_mensagem"></div>
+    </form>
+  </div>
+
+</body>
+
+</html>
+<script>
+  function logar() {
+    let email = InEmail.value;
+    let senha = InSenha.value;
+    let posArroba = email.indexOf('@');
+    let posCom = email.indexOf('.com');
+
+    if (email == '') {
+      InEmail.style.border = "solid red 3px";
+      emailIn.style.display = "block";
+      return;
+    } else {
+      InEmail.style.border = "none";
+      emailIn.style.display = "none";
+    }
+
+    if (
+      posArroba <= 0 ||
+      posCom <= posArroba + 1 ||
+      posCom != email.length - 4
+    ) {
+      InEmail.style.border = "solid red 3px";
+      emailIn.style.display = "block";
+      return;
+    } else {
+      InEmail.style.border = "none";
+      emailIn.style.display = "none";
+    }
+
+    if (senha == '' || senha.length < 6) {
+      InSenha.style.border = "solid red 3px";
+      senhaIn.style.display = "block";
+      return;
+    } else {
+      InSenha.style.border = "none";
+      senhaIn.style.display = "none";
+    }
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: email,
+        senhaServer: senha
+      })
+    }).then(function (resposta) {
+
+      if (resposta.ok) {
+
+        resposta.json().then(json => {
+
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          sessionStorage.AQUARIOS = JSON.stringify(json.aquarios);
+
+          div_mensagem.innerHTML = "✅ Login realizado com sucesso! Redirecionando...";
+          div_mensagem.style.color = "green";
+
+          setTimeout(function () {
+            window.location.href = "card.html";
+          }, 1000);
+
+        });
+
+      } else {
+
+        resposta.text().then(texto => {
+          console.error(texto);
+
+          div_mensagem.innerHTML = "❌ Email ou senha inválidos";
+          div_mensagem.style.color = "red";
+        });
+
+      }
+
+    }).catch(function (erro) {
+      console.log(erro);
+
+      div_mensagem.innerHTML = "❌ Erro na conexão com o servidor";
+      div_mensagem.style.color = "red";
+    });
+  }
+</script>

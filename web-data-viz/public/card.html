@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFC Fighting</title>
+    <link rel="stylesheet" href="css/card.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <h1><span>UFC</span> FIGHTING</h1>
+        <a href="#">Fight History</a>
+    </header>
+
+    <section class="cards">
+        <div class="card">
+            <img src="img/jon.avif" alt="Jon Jones">
+            <p>28 vitórias - 1 derrota</p>
+            <h3>Jon Jones</h3>
+            <span>Peso-pesado</span>
+        </div>
+
+        <div class="card">
+            <img src="img/khabib.avif" alt="Khabib">
+            <p>29 vitórias - 0 derrotas</p>
+            <h3>khabib nurmagomedov</h3>
+            <span>Peso-leve</span>
+        </div>
+
+        <div class="card">
+            <img src="img/anderson.webp" alt="Anderson Silva">
+            <p>34 vitórias - 11 derrotas</p>
+            <h3>Anderson Silva</h3>
+            <span>Peso-médio</span>
+        </div>
+
+        <div class="card">
+            <img src="img/gsp.jpg" alt="GSP">
+            <p>26 vitórias - 2 derrotas</p>
+            <h3>Georges St-Pierre</h3>
+            <span>Peso-médio</span>
+        </div>
+
+        <div class="card">
+            <img src="img/dj.jpg">
+            <p>25 vitórias - 4 derrotas</p>
+            <h3>Demetrious</h3>
+            <span>Peso-mosca</span>
+        </div>
+
+        <div class="card">
+            <img src="img/islam.avif">
+            <p>28 vitórias - 1 derrota</p>
+            <h3>Islam makhachev</h3>
+            <span>Peso-meio-médio</span>
+        </div>
+    </section>
+
+    <section class="fundo">
+
+        <div class="selects">
+            <select id="ipt_lutador1" onchange="trocarImagem()">
+                <option value="0">Anderson Silva</option>
+                <option value="1">Jon Jones</option>
+                <option value="2">khabib nurmagomedov</option>
+                <option value="3">Georges St-Pierre</option>
+                <option value="4">Demetrious Johnson</option>
+                <option value="5">Islam makhachev</option>
+            </select>
+            
+            <select id="ipt_lutador2" onchange="trocarImagem()">
+                <option value="0">Anderson Silva</option>
+                <option value="1">Jon Jones</option>
+                <option value="2">khabib nurmagomedov</option>
+                <option value="3">Georges St-Pierre</option>
+                <option value="4">Demetrious Johnson</option>
+                <option value="5">Islam makhachev</option>
+            </select>
+        </div>
+            
+        <div class="topo-lutadores">
+            <div class="lado">
+                <img id="img1">
+            </div>
+            <div class="vs">VS</div>
+            <div class="lado">
+                <img id="img2">
+            </div>
+        </div>
+
+        <div class="back-groud-cards">
+            <div class="linha">
+                <span>FORÇA</span>
+                <div class="lados">
+                    <div class="barra">
+                        <div id="forca1" class="valor"></div>
+                    </div>
+
+                    <div class="barra">
+                        <div id="forca2" class="valor"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="linha">
+                <span>VELOCIDADE</span>
+                <div class="lados">
+                    <div class="barra">
+                        <div id="vel1" class="valor"></div>
+                    </div>
+
+                    <div class="barra">
+                        <div id="vel2" class="valor"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="linha">
+                <span>FINALIZAÇÃO</span>
+                <div class="lados">
+                    <div class="barra">
+                        <div id="fin1" class="valor"></div>
+                    </div>
+
+                    <div class="barra">
+                        <div id="fin2" class="valor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="linha">
+                <span>DEFESA</span>
+                <div class="lados">
+                    <div class="barra">
+                        <div id="def1" class="valor"></div>
+                    </div>
+
+                    <div class="barra">
+                        <div id="def2" class="valor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>
+<script src="js/atualizar.js"></script>
+<script>
+    let lutadores = [
+        {
+            "nome": "Anderson Silva",
+            "forca": 8,
+            "velocidade": 10,
+            "finalizacao": 8,
+            "defesa": 7,
+            img: "img/anderson.webp"
+        },
+        {
+            "nome": "Jon Jones",
+            "forca": 9,
+            "velocidade": 8,
+            "finalizacao": 9,
+            "defesa": 10,
+            img: "img/jon.avif"
+        },
+        {
+            "nome": "Khabib Nurmagomedov",
+            "forca": 8,
+            "velocidade": 8,
+            "finalizacao": 10,
+            "defesa": 9,
+            img: "img/khabib.avif"
+        },
+        {
+            "nome": "Georges St-Pierre",
+            "forca": 8,
+            "velocidade": 9,
+            "finalizacao": 8,
+            "defesa": 10,
+            img: "img/gsp.jpg"
+        },
+        {
+            "nome": "Demetrious Johnson",
+            "forca": 6,
+            "velocidade": 10,
+            "finalizacao": 9,
+            "defesa": 9,
+            img: "img/dj.jpg"
+        },
+        {
+            "nome": "Islam Makhachev",
+            "forca": 8,
+            "velocidade": 8,
+            "finalizacao": 10,
+            "defesa": 9,
+            img: "img/islam.avif"
+        }
+    ];
+    function comparar() {
+        let l1 = Number(ipt_lutador1.value);
+        let l2 = Number(ipt_lutador2.value);
+
+        let f1 = lutadores[l1];
+        let f2 = lutadores[l2];
+
+
+
+        atualizarBarra("forca1", "forca2", f1.forca, f2.forca);
+        atualizarBarra("vel1", "vel2", f1.velocidade, f2.velocidade);
+        atualizarBarra("fin1", "fin2", f1.finalizacao, f2.finalizacao);
+        atualizarBarra("def1", "def2", f1.defesa, f2.defesa);
+    }
+
+    function trocarImagem() {
+        let l1 = ipt_lutador1.value;
+        let l2 = ipt_lutador2.value;
+
+        img1.src = lutadores[l1].img;
+        img2.src = lutadores[l2].img;
+
+        comparar();
+    }
+    window.onload = function () {
+        trocarImagem();
+        comparar();
+    };
+</script>
