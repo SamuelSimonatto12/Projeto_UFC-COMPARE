@@ -108,7 +108,7 @@ section {
 }
 
 .barra {
-    width: 45%;
+    width: 100%;
     height: 12px;
     background: black; 
     border-radius: 10px;
@@ -128,8 +128,7 @@ section {
 
 .lados {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
 }
 
 .back-groud-cards{
@@ -142,5 +141,44 @@ section {
     display: flex;
     justify-content: center; 
     gap: 140px; 
+}
+
+.topo-lutadores {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.card-lutador {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 0 15px black;
+}
+
+.card-lutador img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-lutador h3 {
+    margin: 10px 0 5px;
+    color: gold;
+}
+
+.card-lutador p {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.vs {
+    font-size: 50px;
+    font-weight: bold;
+    color: gold;
 }
 

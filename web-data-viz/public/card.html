@@ -64,32 +64,40 @@
 
         <div class="selects">
             <select id="ipt_lutador1" onchange="trocarImagem()">
-                <option value="0">Anderson Silva</option>
-                <option value="1">Jon Jones</option>
-                <option value="2">khabib nurmagomedov</option>
-                <option value="3">Georges St-Pierre</option>
-                <option value="4">Demetrious Johnson</option>
-                <option value="5">Islam makhachev</option>
+                <option value="1">Anderson Silva</option>
+                <option value="2">Jon Jones</option>
+                <option value="3">khabib nurmagomedov</option>
+                <option value="4">Georges St-Pierre</option>
+                <option value="5">Demetrious Johnson</option>
+                <option value="6">Islam makhachev</option>
             </select>
-            
+
             <select id="ipt_lutador2" onchange="trocarImagem()">
-                <option value="0">Anderson Silva</option>
-                <option value="1">Jon Jones</option>
-                <option value="2">khabib nurmagomedov</option>
-                <option value="3">Georges St-Pierre</option>
-                <option value="4">Demetrious Johnson</option>
-                <option value="5">Islam makhachev</option>
+                <option value="1">Anderson Silva</option>
+                <option value="2">Jon Jones</option>
+                <option value="3">khabib nurmagomedov</option>
+                <option value="4">Georges St-Pierre</option>
+                <option value="5">Demetrious Johnson</option>
+                <option value="6">Islam makhachev</option>
             </select>
         </div>
-            
+
         <div class="topo-lutadores">
-            <div class="lado">
+
+            <div class="card-lutador">
                 <img id="img1">
+                <h3 id="nome1"></h3>
+                <p id="info1"></p>
             </div>
+
             <div class="vs">VS</div>
-            <div class="lado">
+
+            <div class="card-lutador">
                 <img id="img2">
+                <h3 id="nome2"></h3>
+                <p id="info2"></p>
             </div>
+
         </div>
 
         <div class="back-groud-cards">
@@ -152,51 +160,63 @@
 <script>
     let lutadores = [
         {
-            "nome": "Anderson Silva",
-            "forca": 8,
-            "velocidade": 10,
-            "finalizacao": 8,
-            "defesa": 7,
+            nome: "Anderson Silva",
+            vitorias: 34,
+            derrotas: 11,
+            forca: 8,
+            velocidade: 10,
+            finalizacao: 8,
+            defesa: 7,
             img: "img/anderson.webp"
         },
         {
-            "nome": "Jon Jones",
-            "forca": 9,
-            "velocidade": 8,
-            "finalizacao": 9,
-            "defesa": 10,
+            nome: "Jon Jones",
+            vitorias: 28,
+            derrotas: 1,
+            forca: 9,
+            velocidade: 8,
+            finalizacao: 9,
+            defesa: 10,
             img: "img/jon.avif"
         },
         {
-            "nome": "Khabib Nurmagomedov",
-            "forca": 8,
-            "velocidade": 8,
-            "finalizacao": 10,
-            "defesa": 9,
+            nome: "Khabib Nurmagomedov",
+            vitorias: 29,
+            derrotas: 0,
+            forca: 8,
+            velocidade: 8,
+            finalizacao: 10,
+            defesa: 9,
             img: "img/khabib.avif"
         },
         {
-            "nome": "Georges St-Pierre",
-            "forca": 8,
-            "velocidade": 9,
-            "finalizacao": 8,
-            "defesa": 10,
+            nome: "Georges St-Pierre",
+            vitorias: 26,
+            derrotas: 2,
+            forca: 8,
+            velocidade: 9,
+            finalizacao: 8,
+            defesa: 10,
             img: "img/gsp.jpg"
         },
         {
-            "nome": "Demetrious Johnson",
-            "forca": 6,
-            "velocidade": 10,
-            "finalizacao": 9,
-            "defesa": 9,
+            nome: "Demetrious Johnson",
+            vitorias: 25,
+            derrotas: 4,
+            forca: 6,
+            velocidade: 10,
+            finalizacao: 9,
+            defesa: 9,
             img: "img/dj.jpg"
         },
         {
-            "nome": "Islam Makhachev",
-            "forca": 8,
-            "velocidade": 8,
-            "finalizacao": 10,
-            "defesa": 9,
+            nome: "Islam Makhachev",
+            vitorias: 28,
+            derrotas: 1,
+            forca: 8,
+            velocidade: 8,
+            finalizacao: 10,
+            defesa: 9,
             img: "img/islam.avif"
         }
     ];
@@ -204,8 +224,8 @@
         let l1 = Number(ipt_lutador1.value);
         let l2 = Number(ipt_lutador2.value);
 
-        let f1 = lutadores[l1];
-        let f2 = lutadores[l2];
+        let f1 = lutadores[l1 - 1];
+        let f2 = lutadores[l2 - 1];
 
 
 
@@ -219,13 +239,37 @@
         let l1 = ipt_lutador1.value;
         let l2 = ipt_lutador2.value;
 
-        img1.src = lutadores[l1].img;
-        img2.src = lutadores[l2].img;
+        let f1 = lutadores[l1 - 1];
+        let f2 = lutadores[l2 -1];
 
-        comparar();
-    }
-    window.onload = function () {
-        trocarImagem();
-        comparar();
-    };
+        img1.src = f1.img;
+        img2.src = f2.img;
+
+        nome1.innerText = f1.nome;
+        nome2.innerText = f2.nome;
+
+        info1.innerText = `${f1.vitorias} vitórias - ${f1.derrotas} derrotas`;
+        info2.innerText = `${f2.vitorias} vitórias - ${f2.derrotas} derrotas`;
+
+        comparar()
+
+        fetch("/escolhas/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            usuarioServer: sessionStorage.ID_USUARIO,
+            lutador1Server: l1,
+            lutador2Server: l2
+        })
+    })
+    .then(function(resposta){
+        console.log("Comparação salva!");
+    })
+    .catch(function(erro){
+        console.log(erro);
+    });
+}
+    
 </script>
