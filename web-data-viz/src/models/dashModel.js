@@ -44,8 +44,29 @@ function buscarTotalComparacoes(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function buscarHistorico(idUsuario) {
+
+    var instrucaoSql = `
+        select 
+            l1.nome as lutador1,
+            l2.nome as lutador2,
+            data
+        from comparacoes
+        join lutadores l1
+            on id_lutador1 = l1.id
+        join lutadores l2
+            on id_lutador2 = l2.id
+        where fk_usuario = ${idUsuario}
+        order by data desc
+        limit 5;
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarTop3,
     buscarFavorito,
-    buscarTotalComparacoes
+    buscarTotalComparacoes,
+    buscarHistorico
 }

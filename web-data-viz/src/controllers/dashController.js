@@ -1,10 +1,10 @@
-var dashboardModel = require("../models/dashboardModel");
+var dashModel = require("../models/dashModel");
 
 function top3(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
-    dashboardModel.buscarTop3(idUsuario)
+    dashModel.buscarTop3(idUsuario)
         .then(function(resultado){
             res.json(resultado);
         })
@@ -18,7 +18,7 @@ function favorito(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
-    dashboardModel.buscarFavorito(idUsuario)
+    dashModel.buscarFavorito(idUsuario)
         .then(function(resultado){
             res.json(resultado);
         })
@@ -32,7 +32,21 @@ function totalComparacoes(req, res) {
 
     var idUsuario = req.params.idUsuario;
 
-    dashboardModel.buscarTotalComparacoes(idUsuario)
+    dashModel.buscarTotalComparacoes(idUsuario)
+        .then(function(resultado){
+            res.json(resultado);
+        })
+        .catch(function(erro){
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function historico(req, res) {
+
+    var idUsuario = req.params.idUsuario;
+
+    dashModel.buscarHistorico(idUsuario)
         .then(function(resultado){
             res.json(resultado);
         })
@@ -45,5 +59,6 @@ function totalComparacoes(req, res) {
 module.exports = {
     top3,
     favorito,
-    totalComparacoes
+    totalComparacoes,
+    historico
 }

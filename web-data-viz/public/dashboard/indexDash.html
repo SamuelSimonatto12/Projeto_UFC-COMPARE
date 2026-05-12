@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UFC</title>
+
+    <link rel="stylesheet" href="../css/indexDash.css" <link
+        href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+
+        <aside class="sidebar">
+
+            <h1>UFC</h1>
+
+            <a href="#">Dashboard</a>
+            <a href="#">Comparações</a>
+            <a href="#">Perfil</a>
+            <a href="#">Sair</a>
+
+        </aside>
+
+
+        <main class="dashboard">
+
+
+            <section class="topo">
+
+                <h2>Dashboard do Usuário</h2>
+
+                <p>
+                    Estatísticas das comparações realizadas
+                </p>
+
+            </section>
+
+
+            <section class="cards">
+
+                <div class="card">
+                    <h3>Total de Comparações</h3>
+                    <span id="totalComparacoes"></span>
+                </div>
+
+                <div class="card">
+                    <h3>Lutador Favorito</h3>
+                    <span id="favorito"></span>
+                </div>
+
+            </section>
+
+            <section class="graficos">
+
+                <div class="grafico-card">
+                    <h3>Top 3 Lutadores</h3>
+
+                    <canvas id="graficoTop3"></canvas>
+                </div>
+
+                <div class="grafico-card historico">
+
+                    <h3>Histórico</h3>
+
+                    <div id="historico"></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    window.onload = function () {
+
+        fetch(`/dash/total/${sessionStorage.ID_USUARIO}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
+
+                totalComparacoes.innerHTML = dados[0].total;
+
+            });
+
+
+        fetch(`/dash/favorito/${sessionStorage.ID_USUARIO}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
+
+                favorito.innerHTML = dados[0].nome;
+
+            });
+
+
+        fetch(`/dash/top3/${sessionStorage.ID_USUARIO}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
+
+                let nomes = [];
+                let escolhas = [];
+
+                for (let i = 0; i < dados.length; i++) {
+
+                    nomes.push(dados[i].nome);
+                    escolhas.push(dados[i].escolhas);
+
+                }
+
+                const ctx = graficoTop3;
+
+                new Chart(ctx, {
+
+                    type: "bar",
+
+                    data: {
+                        labels: nomes,
+
+                        datasets: [{
+                            label: "Escolhas",
+                            data: escolhas,
+                            backgroundColor: '#d4af37',
+                            borderColor: '#d4af37',
+                            borderWidth: 2
+                        }]
+                    }
+
+                });
+
+            });
+
+    }
+
+    fetch(`/dash/historico/${sessionStorage.ID_USUARIO}`)
+        .then(function (resposta) {
+            return resposta.json();
+        })
+        .then(function (dados) {
+
+            historico.innerHTML = "";
+
+            for (let i = 0; i < dados.length; i++) {
+
+                historico.innerHTML += `
+            <div class="itemHistorico">
+                <span>${dados[i].lutador1}</span>
+                VS
+                <span>${dados[i].lutador2}</span>
+            </div>
+        `;
+
+            }
+
+        });
+
+</script>

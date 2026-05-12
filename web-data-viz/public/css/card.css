@@ -118,7 +118,7 @@ section {
     height: 100%;
     background: #d4af37;  
     width: 0%; 
-    transition: width 0.6s ease-in-out;
+    transition: width 0.5s ease-in-out;
     border-radius: 5px;
 }
 
@@ -132,7 +132,7 @@ section {
 }
 
 .back-groud-cards{
-  background-color: rgba(128, 128, 128, 0.648);
+  background-color: rgba(128, 128, 128, 0.8);
   border-radius: 10px;
   width: 50%;
 }
