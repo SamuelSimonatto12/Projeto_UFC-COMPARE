@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard UFC</title>
 
-    <link rel="stylesheet" href="../css/indexDash.css" <link
-        href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/indexDash.css" 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -22,9 +23,9 @@
             <h1>UFC</h1>
 
             <a href="#">Dashboard</a>
-            <a href="#">Comparações</a>
-            <a href="#">Perfil</a>
-            <a href="#">Sair</a>
+            <a href="historico.html">Comparações</a>
+            <a href="perfil.html">Perfil</a>
+            <a href="../card.html">Sair</a>
 
         </aside>
 
@@ -87,7 +88,9 @@
 
     window.onload = function () {
 
-        fetch(`/dash/total/${sessionStorage.ID_USUARIO}`)
+        fetch(`/dash/total/${sessionStorage.ID_USUARIO}`, {
+            method: "GET"
+        })
             .then(function (resposta) {
                 return resposta.json();
             })
@@ -98,7 +101,9 @@
             });
 
 
-        fetch(`/dash/favorito/${sessionStorage.ID_USUARIO}`)
+        fetch(`/dash/favorito/${sessionStorage.ID_USUARIO}`, {
+            method: "GET"
+        })
             .then(function (resposta) {
                 return resposta.json();
             })
@@ -109,7 +114,9 @@
             });
 
 
-        fetch(`/dash/top3/${sessionStorage.ID_USUARIO}`)
+        fetch(`/dash/top3/${sessionStorage.ID_USUARIO}`, {
+            method: "GET"
+        })
             .then(function (resposta) {
                 return resposta.json();
             })
@@ -139,7 +146,7 @@
                             data: escolhas,
                             backgroundColor: '#d4af37',
                             borderColor: '#d4af37',
-                            borderWidth: 2
+                            borderWidth: 1
                         }]
                     }
 
@@ -147,19 +154,18 @@
 
             });
 
-    }
 
-    fetch(`/dash/historico/${sessionStorage.ID_USUARIO}`)
-        .then(function (resposta) {
-            return resposta.json();
-        })
-        .then(function (dados) {
+        fetch(`/dash/historico/${sessionStorage.ID_USUARIO}`)
+            .then(function (resposta) {
+                return resposta.json();
+            })
+            .then(function (dados) {
 
-            historico.innerHTML = "";
+                historico.innerHTML = "";
 
-            for (let i = 0; i < dados.length; i++) {
+                for (let i = 0; i < dados.length; i++) {
 
-                historico.innerHTML += `
+                    historico.innerHTML += `
             <div class="itemHistorico">
                 <span>${dados[i].lutador1}</span>
                 VS
@@ -167,8 +173,11 @@
             </div>
         `;
 
-            }
+                }
 
-        });
+            });
+    }
+
+
 
 </script>
