@@ -51,8 +51,9 @@ h1 span {
 .cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 20px;
   padding: 40px 20px;
+  max-width: 97%;
 }
 
 .card {
@@ -87,7 +88,7 @@ h1 span {
     color: #fff;
     margin: 15px 0 5px 0;
     text-transform: uppercase;
-    font-size: 1.2rem;
+    font-size: 15px;
     letter-spacing: 1px;
 }
 
@@ -101,7 +102,7 @@ h1 span {
 .card span {
     display: block;
     color: #888;
-    font-size: 0.8rem;
+    font-size: 10px;
     text-transform: uppercase;
     margin-bottom: 10px;
 }

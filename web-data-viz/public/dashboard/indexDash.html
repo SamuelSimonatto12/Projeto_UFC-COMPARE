@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard UFC</title>
 
-    <link rel="stylesheet" href="../css/indexDash.css" 
-    
+    <link rel="stylesheet" href="../css/indexDash.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,17 +15,37 @@
 
 <body>
 
-    <div class="container">
-
+    <div class="tudo">
 
         <aside class="sidebar">
 
-            <h1>UFC</h1>
+            <div class="topo-sidebar">
+                <h1>UFC <span>FIGHTING</span></h1>
+            </div>
 
-            <a href="#">Dashboard</a>
-            <a href="historico.html">Comparações</a>
-            <a href="perfil.html">Perfil</a>
-            <a href="../card.html">Sair</a>
+            <div class="menu">
+
+                <a class="ativo" href="#">
+                    Dashboard
+                </a>
+
+                <a href="comparacoes.html">
+                    Comparações
+                </a>
+
+                <a href="perfil.html">
+                    Perfil
+                </a>
+
+            </div>
+
+            <div class="bottom-sidebar">
+
+                <a class="btn-sair" href="../card.html">
+                    Sair
+                </a>
+
+            </div>
 
         </aside>
 
@@ -88,37 +108,65 @@
 
     window.onload = function () {
 
-        fetch(`/dash/total/${sessionStorage.ID_USUARIO}`, {
-            method: "GET"
-        })
+        fetch(`/dash/total/${sessionStorage.ID_USUARIO}`)
             .then(function (resposta) {
+
+                if (!resposta.ok) {
+                    throw new Error("Erro na API");
+                }
+
                 return resposta.json();
+
             })
             .then(function (dados) {
 
                 totalComparacoes.innerHTML = dados[0].total;
 
+            })
+            .catch(function (erro) {
+
+                console.log("Erro:", erro);
+
             });
 
 
-        fetch(`/dash/favorito/${sessionStorage.ID_USUARIO}`, {
-            method: "GET"
-        })
+
+
+        fetch(`/dash/favorito/${sessionStorage.ID_USUARIO}`)
             .then(function (resposta) {
+
+                if (!resposta.ok) {
+                    throw new Error("Erro na API");
+                }
+
                 return resposta.json();
+
             })
             .then(function (dados) {
 
                 favorito.innerHTML = dados[0].nome;
 
+            })
+            .catch(function (erro) {
+
+                console.log("Erro:", erro);
+
             });
+
+
 
 
         fetch(`/dash/top3/${sessionStorage.ID_USUARIO}`, {
             method: "GET"
         })
             .then(function (resposta) {
+
+                if (!resposta.ok) {
+                    throw new Error("Erro na API");
+                }
+
                 return resposta.json();
+
             })
             .then(function (dados) {
 
@@ -152,12 +200,25 @@
 
                 });
 
+            })
+            .catch(function (erro) {
+
+                console.log("Erro:", erro);
+
             });
+
+
 
 
         fetch(`/dash/historico/${sessionStorage.ID_USUARIO}`)
             .then(function (resposta) {
+
+                if (!resposta.ok) {
+                    throw new Error("Erro na API");
+                }
+
                 return resposta.json();
+
             })
             .then(function (dados) {
 
@@ -166,7 +227,7 @@
                 for (let i = 0; i < dados.length; i++) {
 
                     historico.innerHTML += `
-            <div class="itemHistorico">
+            <div class="item-historico">
                 <span>${dados[i].lutador1}</span>
                 VS
                 <span>${dados[i].lutador2}</span>
@@ -174,6 +235,11 @@
         `;
 
                 }
+
+            })
+            .catch(function (erro) {
+
+                console.log("Erro:", erro);
 
             });
     }

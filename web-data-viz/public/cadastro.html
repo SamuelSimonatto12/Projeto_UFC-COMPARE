@@ -22,6 +22,9 @@
       <p style="display: none; color: red;" id="senhaIn">Senha Inválida</p>
       <button type="button" class="botao" onclick="cadastrar()">Cadastrar</button>
       <div id="div_mensagem"></div>
+      <p class="link-cadastro">
+        Já possui uma conta? <a href="login.html">Clique aqui</a>
+      </p>
     </form>
   </div>
 
@@ -121,8 +124,7 @@
             window.location = "login.html";
           }, "2000");
 
-          limparFormulario();
-          finalizarAguardar();
+          
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }

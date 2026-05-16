@@ -46,6 +46,24 @@ body {
   text-align: center;
 }
 
+.link-cadastro {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #333;
+}
+
+.form a{
+
+  text-align: center;
+  text-decoration: none;
+  color: black ;
+}
+
+.form a:hover{
+
+  color: #DAA520;
+}
+
 
 .form input {
   padding: 10px;

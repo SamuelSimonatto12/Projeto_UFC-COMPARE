@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparações</title>
+
+    <link rel="stylesheet" href="../css/comparacoes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="tudo">
+
+        <aside class="sidebar">
+
+            <div class="topo-sidebar">
+                <h1>UFC <span>FIGHTING</span></h1>
+            </div>
+
+            <div class="menu">
+
+                <a href="indexDash.html">
+                    Dashboard
+                </a>
+
+                <a class="ativo" href="#">
+                    Comparações
+                </a>
+
+                <a href="perfil.html">
+                    Perfil
+                </a>
+
+            </div>
+
+            <div class="bottom-sidebar">
+
+                <a class="btn-sair" href="../card.html">
+                    Sair
+                </a>
+
+            </div>
+
+        </aside>
+
+        <main class="comparacoes">
+
+            <div class="topo">
+
+                <h2>Últimos Confrontos</h2>
+
+                <p>
+                    Histórico das suas últimas comparações
+                </p>
+
+            </div>
+
+            <div id="historico" class="confrontos"></div>
+
+        </main>
+
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+
+    fetch(`/comparacoes/historico/${sessionStorage.ID_USUARIO}`)
+        .then(function (resposta) {
+
+            if (!resposta.ok) {
+                throw new Error("Erro ao buscar histórico");
+            }
+
+            return resposta.json();
+
+        })
+        .then(function (dados) {
+
+            historico.innerHTML = "";
+
+            for (let i = 0; i < dados.length; i++) {
+
+                historico.innerHTML += `
+            
+            <div class="card-confronto">
+
+                <div class="lutadores">
+
+                    <div class="lutador">
+                        <img src="../img/${dados[i].lutador1}.png">
+                        <span>${dados[i].lutador1}</span>
+                    </div>
+
+                    <div class="vs">
+                        VS
+                    </div>
+
+                    <div class="lutador">
+                        <img src="../img/${dados[i].lutador2}.png">
+                        <span>${dados[i].lutador2}</span>
+                    </div>
+
+                </div>
+
+                <div class="info-confronto">
+
+                    <div class="data">
+                        ${dados[i].data}
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+            }
+
+        })
+        .catch(function (erro) {
+
+            console.log("Erro:", erro);
+
+        });
+</script>
